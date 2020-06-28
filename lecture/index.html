@@ -7,7 +7,7 @@
   <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-  <title>1-2. 첫 리액트 컴포넌트</title>
+  <title>구구단</title>
 </head>
 
 <body>
@@ -17,12 +17,25 @@
     const e = React.createElement; //  html tag를 만들어주는 함수
 
     class LikeButton extends React.Component { // React 안에 Component를 만든다.
-      constructor(props) { //Component가 생겼을 때 제일 먼저 실행되는 부
+      constructor(props) { // Component가 생겼을 때 제일 먼저 실행되는 부분 (Data 부분)
         super(props);
+        this.state = { // 상태: 바뀌는 부분 or 바뀔 수 있는 부분
+          liked: false
+        }
       }
 
-      render() { // LikeButton을 화면에 어떻게 보여줄지 결정해주는 메소드
-        return e('button', null, 'Like'); // <button>Like</button> 이런 tag를 만들겠다는 뜻
+      render() { // LikeButton을 화면에 어떻게 보여줄지 결정해주는 메소드 (화면 부분)
+        return e('button', {
+            onClick: () => {
+              this.setState({
+                liked: true
+              }), console.log('clicked!')
+            },
+            type: 'submit'
+          },
+          this.state.liked === true ? 'Liked' : 'Like'
+        );
+        // <button onclick="onClick: () => { console.log('clicked!') }" type="submit">Like</button> 이런 tag를 만들겠다는 뜻
       }
     }
   </script>
@@ -33,4 +46,5 @@
 </body>
 <!-- 초반에는 답답하겠지만 결과를 예측할 줄 알아야 React를 잘할 수 있다! -->
 <!-- web보다는 app의 형식에 더 가깝다. -->
+
 </html>
