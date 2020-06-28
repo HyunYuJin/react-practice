@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <!-- React를 실행. -->
+  <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <title>1-2. 첫 리액트 컴포넌트</title>
+</head>
+
+<body>
+  <!-- #root에 리액트를 넣을거에요. -->
+  <div id="root"></div> <!-- 결과: <div id="root"><button>Like</button></div> -->
+  <script>
+    const e = React.createElement; //  html tag를 만들어주는 함수
+
+    class LikeButton extends React.Component { // React 안에 Component를 만든다.
+      constructor(props) { //Component가 생겼을 때 제일 먼저 실행되는 부
+        super(props);
+      }
+
+      render() { // LikeButton을 화면에 어떻게 보여줄지 결정해주는 메소드
+        return e('button', null, 'Like'); // <button>Like</button> 이런 tag를 만들겠다는 뜻
+      }
+    }
+  </script>
+  <script>
+    // 화면에 실제로 보여주는 부분
+    ReactDOM.render(e(LikeButton), document.querySelector('#root'));
+  </script>
+</body>
+<!-- 초반에는 답답하겠지만 결과를 예측할 줄 알아야 React를 잘할 수 있다! -->
+<!-- web보다는 app의 형식에 더 가깝다. -->
+</html>
